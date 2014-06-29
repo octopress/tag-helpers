@@ -1,3 +1,5 @@
+require "jekyll"
+
 require "octopress-tag-helpers/version"
 require "octopress-tag-helpers/hooks"
 

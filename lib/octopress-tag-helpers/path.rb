@@ -25,12 +25,8 @@ module Octopress
         # If relative path, e.g. ./somefile, ../somefile
         if file =~ /^\.+\//
           page = context['page']
-          if local_dir = page['dir']
-            File.expand_path(File.join(root, local_dir, file))
-          else
-            local_dir = File.dirname(page['path'])
-            File.expand_path(File.join(root, local_dir, file))
-          end
+          local_dir = File.dirname(page['path'])
+          File.expand_path(File.join(root, local_dir, file))
 
         # If absolute or relative to a user directory, e.g. /Users/Bob/somefile or ~/somefile
         elsif file =~ /^[\/~]/

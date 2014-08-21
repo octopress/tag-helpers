@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.0.2 - 2014-08-20
+- Support for changes in Jekyll 2.3.0
+
 ## 1.0.1 - 2014-06-29
 - Improved support for relative paths
 

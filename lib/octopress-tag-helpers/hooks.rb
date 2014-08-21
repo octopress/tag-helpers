@@ -4,7 +4,7 @@ module Jekyll
 
     def do_layout(payload, layouts)
       # The  tags needs access to the converter to process it while rendering.
-      payload['converter'] = self.converter
+      payload['converter'] = @converter ||= site.converters.find { |c| c.matches(ext) }
 
       jekyll_do_layout(payload, layouts)
     end

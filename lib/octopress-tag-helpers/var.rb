@@ -29,14 +29,16 @@ module Octopress
           filters = $2
         end
         vars = vars.split(/ \|\| /).map { |v|
-          context[v.strip]
+          v if context[v.strip]
         }.compact
 
         var = vars.first
+
         if filters
-          var = Liquid::Variable.new("'#{var}'"+ filters).render(context)
+          Liquid::Variable.new(var << filters).render(context)
+        else
+          context[var]
         end
-        var
       end
 
       def self.evaluate_ternary(markup, context)

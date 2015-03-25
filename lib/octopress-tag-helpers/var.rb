@@ -28,9 +28,12 @@ module Octopress
           vars = $1
           filters = $2
         end
+
         vars = vars.split(/ \|\| /).map { |v|
-          v if context[v.strip]
+          v if !context[v.strip].nil?
         }.compact
+        
+        return if vars.empty?
 
         var = vars.first
 

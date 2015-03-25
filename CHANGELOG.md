@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.0.4 - 2015-03-24
+- Fix: Assigning nil, null, or false to a variable caused an error.
+
 ## 1.0.3 - 2015-02-22
 - Fix: Variables were being rendered to strings before being run through filters.
 

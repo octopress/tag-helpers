@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.0.5 - 2015-05-11
+- Minor: Jekyll 3 is fine.
+
 ## 1.0.4 - 2015-03-24
 - Fix: Assigning nil, null, or false to a variable caused an error.
 

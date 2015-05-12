@@ -1,10 +1,11 @@
 module Octopress
   module TagHelpers
     module Path
-      FILE = /(\S+)(\s?)(.*)/
+      FILE = /(?<path>\S+)(\s?)(?<other>.*)/
       def self.parse(markup, context)
-        if markup =~ FILE
-          (context[$1].nil? ? $1 : context[$1]) + ' ' + ($3 || '')
+        matched = markup.strip.match(FILE)
+        if matched
+          (context[matched['path']].nil? ? matched['path'] : context[matched['path']]) + ' ' + (matched['other'] || '')
         else
           markup
         end

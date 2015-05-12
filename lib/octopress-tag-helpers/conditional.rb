@@ -1,17 +1,18 @@
 module Octopress
   module TagHelpers
     module Conditional
-      SYNTAX = /(.*)\s(if|unless)\s(.+)/
+      SYNTAX = /(?<tag>.*)\s(?<condition>if|unless)\s(?<expression>.+)/
 
       def self.parse(markup, context)
-        if markup =~ SYNTAX
-          case $2
+        matched = markup.strip.match(SYNTAX)
+        if matched
+          case matched['condition'].strip
           when 'if'
-            tag = Liquid::If.new('if', $3, ["true","{% endif %}"])
+            tag = Liquid::If.new('if', matched['expression'], ["true","{% endif %}"])
           when 'unless'
-            tag = Liquid::Unless.new('unless', $3, ["true","{% endunless %}"])
+            tag = Liquid::Unless.new('unless', matched['expression'], ["true","{% endunless %}"])
           end
-          tag.render(context) != '' ? $1 : false
+          tag.render(context) != '' ? matched['tag'] : false
         else
           markup
         end

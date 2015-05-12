@@ -1,8 +1,8 @@
 module Octopress
   module TagHelpers
     module Var
-      TERNARY = /(.*?)\(\s*(.+?)\s+\?\s+(.+?)\s+:\s+(.+?)\s*\)(.+)?/
-      HAS_FILTERS = /(.*?)(\s+\|\s+.+)/
+      TERNARY = /(?<markup>.*?)\(\s*(?<condition>.+?)\s+\?\s+(?<trueresult>.+?)\s+:\s+(?<falseresult>.+?)\s*\)(?<other>.+)?/
+      HAS_FILTERS = /(?<markup>.*?)(?<filters>\s+\|\s+.+)/
 
       def self.set_var(var, operator, value, context)
         case operator
@@ -23,10 +23,13 @@ module Octopress
       def self.get_value(vars, context)
         vars = evaluate_ternary(vars, context)
         vars = vars.strip.gsub(/ or /, ' || ')
+
         filters = false
-        if vars =~ HAS_FILTERS
-          vars = $1
-          filters = $2
+
+        matched = vars.strip.match(HAS_FILTERS)
+        if matched
+          vars = matched['markup']
+          filters = matched['filters']
         end
 
         vars = vars.split(/ \|\| /).map { |v|
@@ -45,8 +48,8 @@ module Octopress
       end
 
       def self.evaluate_ternary(markup, context)
-        if markup =~ TERNARY
-          $1 + (Conditional.parse(" if #{$2}", context) ? $3 : $4) + $5
+        if matched = markup.strip.match(TERNARY)
+           matched['markup'] + (Conditional.parse(" if #{matched['condition']}", context) ? matched['trueresult'] : matched['falseresult']) + matched['other']
         else
           markup
         end

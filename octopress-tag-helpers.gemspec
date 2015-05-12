@@ -9,7 +9,6 @@ Gem::Specification.new do |spec|
   spec.authors       = ["Brandon Mathis"]
   spec.email         = ["brandon@imathis.com"]
   spec.summary       = %q{Making it easier to build smart Jekyll/Octopress Liquid tags.}
-  spec.description   = %q{Making it easier to build smart Jekyll/Octopress Liquid tags.}
   spec.homepage      = "https://github.com/octopress/tag-helpers"
   spec.license       = "MIT"
 

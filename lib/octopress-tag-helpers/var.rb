@@ -49,7 +49,8 @@ module Octopress
 
       def self.evaluate_ternary(markup, context)
         if matched = markup.strip.match(TERNARY)
-           matched['markup'] + (Conditional.parse(" if #{matched['condition']}", context) ? matched['trueresult'] : matched['falseresult']) + matched['other']
+          condition = Liquid::Template.parse("{% if #{matched['condition']} %}true{% endif %}")
+          "#{matched['markup']} #{(condition.render!(context) != '' ? matched['trueresult'] : matched['falseresult'])} #{matched['other']}"
         else
           markup
         end

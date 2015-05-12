@@ -8,11 +8,11 @@ module Octopress
         if matched
           case matched['condition'].strip
           when 'if'
-            tag = Liquid::If.new('if', matched['expression'], ["true","{% endif %}"])
+            tag = Liquid::Template.parse("{% if #{matched['expression']} %}true{% endif %}")
           when 'unless'
-            tag = Liquid::Unless.new('unless', matched['expression'], ["true","{% endunless %}"])
+            tag = Liquid::Template.parse("{% unless #{matched['expression']} %}true{% endunless %}")
           end
-          tag.render(context) != '' ? matched['tag'] : false
+          tag.render!(context) != '' ? matched['tag'] : false
         else
           markup
         end

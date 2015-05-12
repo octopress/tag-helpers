@@ -2,6 +2,7 @@
 
 ## 1.0.6 - 2015-05-12
 - Minor: Improvements to regex clarity.
+- Minor: Using `parse` method instead of `new` for Liquid 3 compatibility.
 
 ## 1.0.5 - 2015-05-11
 - Minor: Jekyll 3 is fine.

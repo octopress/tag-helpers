@@ -2,7 +2,7 @@ module Octopress
   module TagHelpers
     module Var
       TERNARY = /(?<markup>.*?)\(\s*(?<condition>.+?)\s+\?\s+(?<trueresult>.+?)\s+:\s+(?<falseresult>.+?)\s*\)(?<other>.+)?/
-      HAS_FILTERS = /(?<markup>.*?)(?<filters>\s+\|\s+.+)/
+      HAS_FILTERS = /(?<markup>.*?)(?<filters>\s*\|\s+.+)/
 
       def self.set_var(var, operator, value, context)
         case operator

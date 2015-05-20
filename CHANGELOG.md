@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.0.7 - 2015-05-19
+- Fix: Relaxed filters regex to fix issue with filter-tag.
+
 ## 1.0.6 - 2015-05-12
 - Minor: Improvements to regex clarity.
 - Minor: Using `parse` method instead of `new` for Liquid 3 compatibility.

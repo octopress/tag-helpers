@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.0.8 - 2015-05-21
+- Fix: Previous regex was a bit too relaxed. It matched `||` when it should only match a single `|`.
+
 ## 1.0.7 - 2015-05-19
 - Fix: Relaxed filters regex to fix issue with filter-tag.
 

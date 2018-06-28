@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.0.9 - 2018-06-28
+- Fix: Fix buggy interaction with Jekyll's `where_exp` filter by rendering var and filter in context.
+
 ## 1.0.8 - 2015-05-21
 - Fix: Previous regex was a bit too relaxed. It matched `||` when it should only match a single `|`.
 

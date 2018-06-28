@@ -41,7 +41,7 @@ module Octopress
         var = vars.first
 
         if filters
-          Liquid::Variable.new(var << filters).render(context)
+          Liquid::Template.parse("{{ " +var << filters + " }}").render(context)
         else
           context[var]
         end
